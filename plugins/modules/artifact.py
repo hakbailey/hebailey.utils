@@ -89,6 +89,8 @@ def main():
         },
     )
 
+    artifact_data.update({"env": dict(os.environ.items())})
+
     data_filename = f"{random_id}_{artifact_name}_data.json"
     data_filepath = os.path.join(data_dir, data_filename)
     with open(data_filepath, "w", encoding="utf-8") as data_out:
