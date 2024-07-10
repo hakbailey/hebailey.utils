@@ -26,6 +26,11 @@ Name | Description
 --- | ---
 [hebailey.utils.hello_world](https://github.com/hakbailey/hebailey.utils/blob/main/docs/hebailey.utils.hello_world_filter.rst)|Demo filter plugin that returns a Hello message.
 
+### Modules
+Name | Description
+--- | ---
+[hebailey.utils.artifact](https://github.com/hakbailey/hebailey.utils/blob/main/docs/hebailey.utils.artifact_module.rst)|Saves artifacts
+
 <!--end collection content-->
 
 ## Using this collection
