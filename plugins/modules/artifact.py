@@ -1,4 +1,3 @@
-import json
 import os
 import random
 import shutil
@@ -75,7 +74,6 @@ def main():
         new_filename,
     )
     shutil.copy(filepath, new_filepath)
-    result.update({"artifact_path": new_filepath})
 
     artifact_name = module.params["name"] or Path(filename).stem
     artifact_data = dict(artifact_name=artifact_name)
@@ -88,24 +86,13 @@ def main():
             ),
         },
     )
-
-    artifact_data.update({"env": dict(os.environ.items())})
+    artifact_data.update({"playbook_env": dict(os.environ.items())})
+    result.update({"artifact_data": artifact_data})
 
     data_filename = f"{random_id}_{artifact_name}_data.json"
     data_filepath = os.path.join(data_dir, data_filename)
-    with open(data_filepath, "w", encoding="utf-8") as data_out:
-        data_out.write(json.dumps(artifact_data))
-    result.update(
-        {
-            "data_path": os.path.join(
-                "job_artifacts",
-                "data",
-                data_filename,
-            ),
-        },
-    )
+    result.update({"datafile_path": data_filepath})
 
-    result.update(artifact_data)
     result.update({"changed": True})
 
     module.exit_json(**result)
